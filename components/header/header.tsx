@@ -4,6 +4,13 @@ import Logo from '../logo/logo';
 import StaticLink from '../static-link/static-link';
 import { useRouter } from 'next/router';
 
+// Algolia instant search (https://www.algolia.com/doc/guides/building-search-ui/installation/react/)
+import algoliasearch from 'algoliasearch';
+import { InstantSearch, SearchBox, Hits, RefinementList, Configure } from 'react-instantsearch-dom';
+const searchClient = algoliasearch('MB93T4YY9A', '4377783a28adfbeef3d5aa6476672b7a');
+
+const Hit = ({ hit }: {hit: {title: string}}) => <p>{hit.title}</p>;
+
 const Header = ({ title }: { title: string }) => {
   const router = useRouter();
   const { vse } = router.query;
@@ -19,6 +26,14 @@ const Header = ({ title }: { title: string }) => {
           <h1>{title}</h1>
         </header>
       </section>
+      <section>
+        <InstantSearch searchClient={searchClient} indexName="nextjsblogwebhook">
+          <Configure facetingAfterDistinct={true} />
+          <SearchBox searchAsYouType={false} />
+          <Hits hitComponent={Hit} />
+          <RefinementList attribute="authorName" />
+        </InstantSearch>
+      </section>
 
       <style jsx>{`
         section {
@@ -26,6 +41,7 @@ const Header = ({ title }: { title: string }) => {
           flex: 1 0 auto;
           justify-content: center;
           background-color: ${theme.colors.mirage};
+          color:#cccccc
         }
         header {
           display: flex;
