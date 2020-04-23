@@ -7,6 +7,7 @@ import HeroCard from '../components/hero-card/hero-card';
 import { NextSeo } from 'next-seo';
 import getHydratedBlogList from '../common/services/blog-reference-list.service';
 import NoBlogPosts from '../components/blog-list/no-blog-posts';
+import Search from '../components/search/search';
 
 const Index: NextPage<BlogListData> = ({ title, subTitle, blogPosts }) => {
   const seoParams: { [key: string]: string | boolean } = {
@@ -24,6 +25,7 @@ const Index: NextPage<BlogListData> = ({ title, subTitle, blogPosts }) => {
       <HeroBanner title={title} subTitle={subTitle} />
       {blogPosts.length ? (
         <>
+          <Search />
           <HeroCard blogPost={blogPosts[0]} />
           <BlogList blogPosts={blogPosts.slice(1)} />
         </>
