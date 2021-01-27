@@ -3,19 +3,19 @@
   command = "npm run export"
 
 [[redirects]]
-  from = "https://productblog.amplience.com/index.html"
+  from = "https://ampproduct-static-blog-nextjs.netlify.app/index.html"
   to = "https://amplience.com/blog"
   status = 301
   force = true
 
 [[redirects]]
-  from = "https://productblog.amplience.com/"
+  from = "https://ampproduct-static-blog-nextjs.netlify.app/"
   to = "https://amplience.com/blog"
   status = 301
   force = true
   
 [[redirects]]
-  from = "https://productblog.amplience.com/blog/*"
+  from = "https://ampproduct-static-blog-nextjs.netlify.app/blog/*"
   to = "https://amplience.com/blog/:splat"
   status = 301
   force = true
